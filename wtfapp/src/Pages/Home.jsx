@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getData, getCityData } from "../Redux/action";
+import Star from "../styles/star.png"
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -50,13 +51,16 @@ const Home = () => {
           >
             <div key={item.user_id} className={styles.boxcontainer}>
               <h2>{item.gym_name}</h2>
-
+              <img className={styles.stars} src={Star} alt="rating"/>
               <p>
                 {item.address1},{item.city}
               </p>
+              
+               
               <p>
-                {item.duration_text} | {item.distance_text}
+              <img src="https://cdn-icons-png.flaticon.com/512/3699/3699532.png" style={{height:'15px',width:'15px'}} alt="location"/>  {item.duration_text} away | {item.distance_text}
               </p>
+              
               <div className={styles.inner}>
                 <p></p>
                 {item.plan_price == null ? (
