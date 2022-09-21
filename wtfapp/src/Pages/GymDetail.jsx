@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/GymDetail.module.css";
-import { getData, getTermsData } from "../Redux/action";
+import { getData, getTermsData,isLoading } from "../Redux/action";
 const GymDetails = () => {
   const { id } = useParams();
   const [plans, setPlans] = useState([]);
@@ -11,6 +11,7 @@ const GymDetails = () => {
 
   const mainData = useSelector((state) => state.data);
   const termsData = useSelector((state) => state.termsData);
+  const isLoading = useSelector((state) => state.isLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const GymDetails = () => {
   }, []);
 
   useEffect(() => {
+    
     dispatch(getTermsData(termsData));
   }, []);
 
@@ -47,7 +49,7 @@ const GymDetails = () => {
   }
 
 
-  return (
+  return isLoading ? <h1>....Loading</h1>: (
     <div className={styles.detailsPage}>
       <div className={styles.details}>
         <h1>{currentProduct.gym_name}</h1>

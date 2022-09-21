@@ -39,7 +39,7 @@
 .terms p {
   margin-right: 20px;
   padding: 10px;
-  background-color: red;
+  background-color:rgb(146,9,9);
   border-radius: 7px;
 }
 
@@ -102,8 +102,9 @@
   .terms p {
     margin-right: 20px;
     padding: 10px;
-    background-color: red;
+    background-color:rgb(146,9,9);
     border-radius: 7px;
+    
   }
 }
 
@@ -157,7 +158,7 @@
   .terms p {
     margin-right: 20px;
     padding: 10px;
-    background-color: red;
+    background-color:rgb(146,9,9);
     border-radius: 7px;
   }
 
@@ -193,6 +194,7 @@
     font-size: 10px;
     padding-bottom: 10px;
     padding-top: 10px;
+    margin-left: 20%;
   }
 
   .facility {
@@ -216,7 +218,7 @@
   .terms p {
     margin-right: 15px;
     padding: 8px;
-    background-color: red;
+    background-color:rgb(146,9,9);
     border-radius: 7px;
   }
   .list h3{

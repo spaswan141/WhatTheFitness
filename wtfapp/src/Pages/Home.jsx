@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getData, getCityData } from "../Redux/action";
+import { getData, getCityData,isLoading } from "../Redux/action";
 import Star from "../styles/star.png"
 
 const Home = () => {
   const dispatch = useDispatch();
   const mainData = useSelector((state) => state.data);
   const cityData = useSelector((state) => state.cityData);
+  const isLoading = useSelector((state) => state.isLoading);
 
   useEffect(() => {
     dispatch(getData(mainData));
@@ -20,7 +21,7 @@ const Home = () => {
 
 ;
 
-  return (
+  return  isLoading ? <h1>...Loading</h1>: (
     <div className={styles.container}>
       <div className={styles.filter}>
         <h1>Filters</h1>
