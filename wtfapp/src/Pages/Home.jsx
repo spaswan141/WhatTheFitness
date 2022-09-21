@@ -11,6 +11,8 @@ const Home = () => {
   const cityData = useSelector((state) => state.cityData);
   const isLoading = useSelector((state) => state.isLoading);
 
+
+    /* ---------Network calls Starts Here---------*/
   useEffect(() => {
     dispatch(getData(mainData));
   }, []);
@@ -19,7 +21,7 @@ const Home = () => {
     dispatch(getCityData(cityData));
   }, []);
 
-;
+    /* ---------Network calls Ends Here---------*/
 
   return  isLoading ? <h1>...Loading</h1>: (
     <div className={styles.container}>

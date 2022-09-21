@@ -3,23 +3,22 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/GymDetail.module.css";
-import { getData, getTermsData,isLoading } from "../Redux/action";
+import { getData, getTermsData, isLoading } from "../Redux/action";
 const GymDetails = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [plans, setPlans] = useState([]);
   const [currentProduct, setcurrentProduct] = useState({});
-
   const mainData = useSelector((state) => state.data);
   const termsData = useSelector((state) => state.termsData);
   const isLoading = useSelector((state) => state.isLoading);
-  const dispatch = useDispatch();
 
+  /* ---------Network calls Starts Here---------*/
   useEffect(() => {
     dispatch(getData(mainData));
   }, []);
 
   useEffect(() => {
-    
     dispatch(getTermsData(termsData));
   }, []);
 
@@ -35,7 +34,7 @@ const GymDetails = () => {
       .get("https://blueproduct.herokuapp.com/plan")
       .then((res) => setPlans(res.data));
   }, []);
-
+  /* ---------Network calls Ends Here---------*/
 
 
   /* For random Colors */
@@ -47,9 +46,12 @@ const GymDetails = () => {
     }
     return code;
   }
+/*--- For Random colors---*/
 
 
-  return isLoading ? <h1>....Loading</h1>: (
+  return isLoading ? (
+    <h1>....Loading</h1>
+  ) : (
     <div className={styles.detailsPage}>
       <div className={styles.details}>
         <h1>{currentProduct.gym_name}</h1>
@@ -70,9 +72,9 @@ const GymDetails = () => {
 
         <h3>Why to choose WTF?</h3>
         <div className={styles.terms}>
-          {termsData.map((el) => {
+          {termsData.map((item) => {
             return (
-              <div key={el.id}>{el.name === null ? "" : <p>{el.name}</p>}</div>
+              <div key={item.id}>{item.name === null ? "" : <p>{item.name}</p>}</div>
             );
           })}
         </div>
@@ -80,15 +82,19 @@ const GymDetails = () => {
 
       <div className={styles.plans}>
         <h1>Choose Membership</h1>
-        {plans.map((ele) => {
+        {plans.map((item) => {
           return (
-            <div style={{ backgroundColor: getColorCode() }} className={styles.list} key={ele.id}>
+            <div
+              style={{ backgroundColor: getColorCode() }}
+              className={styles.list}
+              key={item.id}
+            >
               <div>
-                <h3>{ele.plan}</h3>
-                <h4>{ele.plan_name}</h4>
+                <h3>{item.plan}</h3>
+                <h4>{item.plan_name}</h4>
               </div>
               <div>
-                <h4>{ele.price}</h4>
+                <h4>{item.price}</h4>
               </div>
             </div>
           );
